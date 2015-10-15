@@ -1,12 +1,12 @@
 #!/usr/bin/python
-import sys, getopt
+import sys
+import getopt
 
-grammar = "default grammar"
 
 def main(argv):
-    #Stuff before arguments
-    grammar = "nej"
-    debugvar = 0
+    # Stuff before arguments
+    grammar = "Default value"
+    debug = 0
     try:
         opts, args = getopt.getopt(argv, "hg:d", ["help", "grammar"])
     except getopt.GetoptError:
@@ -18,16 +18,23 @@ def main(argv):
             usage()
             sys.exit()
         elif opt == '-d':
-            debugvar= 1
+            debug= 1
         elif opt in ("-g", "--grammar"):
             grammar = arg
+        elif opt in (null):
+            usage()
+            sys.exit(4)
         print grammar
-        print debugvar
+        print debug
 
 
 def usage():
-    print "This is the helpscreen.  Please do the needfull"
-    print "Usage: inline_args.py -h -g -d"
+    usage = """
+    -h --help           Prints this helpscreen.
+    -d --Debug          Enables Debug mode.
+    -g --grammar arg    Changes from default grammar to arg
+    """
+    print usage
 
 if __name__ == "__main__":
     main(sys.argv[1:])
